@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .email {
+            background-color: white;
+            border-left: 5px solid #007bff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+        }
+
+        .subject {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .label {
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        .spam {
+            background-color: #dc3545;
+        }
+
+        .not-spam {
+            background-color: #28a745;
+        }
+
+        .snippet {
+            margin-top: 10px;
+            color: #555;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>📧 Recent Emails</h1>
+
+    {% for email in emails %}
+    <div class="email">
+        <div class="subject">Subject: {{ email.subject }}</div>
+        <div class="label {% if email.label == 'SPAM' %}spam{% else %}not-spam{% endif %}">
+            Label: {{ email.label }}
+        </div>
+        <div class="snippet">{{ email.snippet }}</div>
+    </div>
+    {% endfor %}
+</body>
+</html>
